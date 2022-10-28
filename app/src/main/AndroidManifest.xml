@@ -16,6 +16,18 @@
         android:theme="@style/Theme.SkyEx"
         tools:targetApi="31">
         <activity
+            android:name=".LandingPage"
+            android:exported="false" />
+        <activity
+            android:name=".SignupPage"
+            android:exported="false" />
+        <activity
+            android:name=".LoginPage"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfilePage"
+            android:exported="false" />
+        <activity
             android:name=".ProductActivity"
             android:exported="false" />
         <activity
