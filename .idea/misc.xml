@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/drawable/rounded_button.xml" value="0.137" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_shopping_cart.xml" value="0.16944444444444445" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/cart_item.xml" value="0.2692307692307692" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/drawable/ss.xml" value="0.2375" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_collection.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_product.xml" value="0.2" />
