@@ -103,8 +103,8 @@ public class SignupPage extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
 
                                         if(task.isSuccessful()){
-                                            //send email verification
-                                            firebaseUser.sendEmailVerification();
+//                                            //send email verification
+//                                            firebaseUser.sendEmailVerification();
 
                                             Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
 

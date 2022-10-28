@@ -79,17 +79,17 @@ public class LoginPage extends AppCompatActivity {
 
 
                                  //get instance of current user
-                                 FirebaseUser fbUser = mAuth.getCurrentUser();
+//                                 FirebaseUser fbUser = mAuth.getCurrentUser();
 
                                  //check if user is verified before giving access to login
-                                 if(fbUser.isEmailVerified()){
+//                                 if(fbUser.isEmailVerified()){
                                      Toast.makeText(LoginPage.this, "Login Success!", Toast.LENGTH_SHORT).show();
                                      Intent profileactivity = new Intent(LoginPage.this,UserProfilePage.class);
                                      startActivity(profileactivity);
-                                 }else {
-                                     fbUser.sendEmailVerification();
-                                     displayAlert();
-                                 }
+//                                 }else {
+//                                     fbUser.sendEmailVerification();
+//                                     displayAlert();
+//                                 }
 
                              }else{
                                  Toast.makeText(LoginPage.this, "Login fail.Please try again!",Toast.LENGTH_SHORT).show();
@@ -102,27 +102,27 @@ public class LoginPage extends AppCompatActivity {
          });
     }
 
-    private void displayAlert() {
-        AlertDialog.Builder adb = new AlertDialog.Builder(LoginPage.this);
-        adb.setTitle("Email verification failed");
-        adb.setMessage("Please verify email in order to login");
-
-        //open email app
-        adb.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent email = new Intent(Intent.ACTION_MAIN);
-                email.addCategory(email.CATEGORY_APP_EMAIL);
-                email.addFlags(email.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(email);
-            }
-        });
-
-        AlertDialog alertMessage = adb.create();
-        alertMessage.show();
-
-
-    }
+//    private void displayAlert() {
+//        AlertDialog.Builder adb = new AlertDialog.Builder(LoginPage.this);
+//        adb.setTitle("Email verification failed");
+//        adb.setMessage("Please verify email in order to login");
+//
+//        //open email app
+//        adb.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                Intent email = new Intent(Intent.ACTION_MAIN);
+//                email.addCategory(email.CATEGORY_APP_EMAIL);
+//                email.addFlags(email.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(email);
+//            }
+//        });
+//
+//        AlertDialog alertMessage = adb.create();
+//        alertMessage.show();
+//
+//
+//    }
 
     @Override
     protected void onStart() {
