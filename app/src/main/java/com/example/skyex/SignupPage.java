@@ -110,7 +110,7 @@ public class SignupPage extends AppCompatActivity {
 
                                             //redirect to login activity
                                             Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
-//                                            loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
+                                               loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(loginactivity);
                                             finish();
                                         }else{
