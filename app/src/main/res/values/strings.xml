@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">SkyEx</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="exploreArray">
+        <item>Card1</item>
+        <item>Card2</item>
+        <item>Card3</item>
+        <item>Card4</item>
+        <item>Card5</item>
+    </string-array>
+
+    <string-array name="brandArray">
+        <item>TommyHilfiger</item>
+        <item>Levis</item>
+        <item>Giordano</item>
+        <item>RalphLauren</item>
+        <item>LouisVuitton</item>
+    </string-array>
 </resources>

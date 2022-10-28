@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Shop"
+        android:id="@+id/shop"
+        android:icon="@drawable/ic_baseline_bolt_24"/>
+    <item android:title="Explore"
+        android:id="@+id/explore"
+        android:icon="@drawable/ic_baseline_remove_red_eye_24"/>
+    <item android:title="Favorites"
+        android:id="@+id/favorites"
+        android:icon="@drawable/ic_baseline_favorite_24"/>
+    <item android:title="Profile"
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_account_circle_24"/>
+</menu>

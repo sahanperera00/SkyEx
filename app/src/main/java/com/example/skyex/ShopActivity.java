@@ -9,14 +9,12 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
+public class ShopActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_shop);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.shop);
@@ -26,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.shop:
-                        startActivity(new Intent(getApplicationContext(),ShopActivity.class));
-                        overridePendingTransition(0,0);
                         return true;
                     case R.id.explore:
                         startActivity(new Intent(getApplicationContext(),ExploreActivity.class));
@@ -46,5 +42,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }
