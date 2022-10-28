@@ -4,7 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/MAD Project/SkyEx/app/src/main/res/drawable/rounded_button.xml" value="0.137" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_add_address.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_add_card.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_checkout.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_edit_address.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_edit_card.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_payment.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_shipping.xml" value="0.27447916666666666" />
         <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_shopping_cart.xml" value="0.16944444444444445" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/address_card.xml" value="0.27025641025641023" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/card_item.xml" value="0.2734375" />
         <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/cart_item.xml" value="0.2692307692307692" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/drawable/ss.xml" value="0.2375" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_collection.xml" value="0.17421875" />
