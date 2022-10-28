@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "640135879466",
+    "firebase_url": "https://skyex-423ec-default-rtdb.firebaseio.com",
+    "project_id": "skyex-423ec",
+    "storage_bucket": "skyex-423ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640135879466:android:d05840c430a68780235c53",
+        "android_client_info": {
+          "package_name": "com.example.skyex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640135879466-m9ea6dona49cb0s1r9pj16lvpgngai2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCef_dbDHKSqm8UA05RTx2wk2uBQpd7XC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640135879466-m9ea6dona49cb0s1r9pj16lvpgngai2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
