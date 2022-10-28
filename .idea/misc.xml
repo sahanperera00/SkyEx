@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/drawable/ss.xml" value="0.2375" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_collection.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_product.xml" value="0.2" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_brands.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_edit_collection.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_edit_product.xml" value="0.176" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_explore.xml" value="0.16799999999999998" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_favorites.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_product.xml" value="0.176" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_product_view.xml" value="0.264" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_profile.xml" value="0.1" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_shop.xml" value="0.176" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/brand_card.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/explore_card.xml" value="0.1" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/fragment_brand.xml" value="0.2" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/fragment_brands.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/fragment_explore.xml" value="0.2" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/fragment_profile.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/fragment_saved_items.xml" value="0.12" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/fragment_shop.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/product_card.xml" value="0.264" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/menu/bottom_navbar.xml" value="0.17421875" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

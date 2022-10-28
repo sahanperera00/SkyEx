@@ -9,17 +9,15 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
+public class FavoritesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_favorites);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.shop);
+        bottomNavigationView.setSelectedItemId(R.id.favorites);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -34,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.favorites:
-                        startActivity(new Intent(getApplicationContext(),FavoritesActivity.class));
-                        overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
@@ -46,5 +42,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }
