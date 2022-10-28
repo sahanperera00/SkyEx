@@ -53,7 +53,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(shoppingCartActivity.this, ShippingActivity.class));
+                startActivity(new Intent(ShoppingCartActivity.this, ShippingActivity.class));
             }
         });
 
