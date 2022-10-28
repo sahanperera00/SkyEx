@@ -18,4 +18,14 @@
         <item>RalphLauren</item>
         <item>LouisVuitton</item>
     </string-array>
+
+    <string-array name="shipping_modes">
+
+        <item>Standard Delivery            (3 - 7 business days)</item>
+        <item>FedEx Express Delivery       (2 - 4 business days)</item>
+        <item>DHL                          (3 - 5 business days)</item>
+        <item>UPS                          (2 - 5 business days)</item>
+
+
+    </string-array>
 </resources>
