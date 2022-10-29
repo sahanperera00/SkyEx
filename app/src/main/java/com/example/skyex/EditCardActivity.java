@@ -1,8 +1,10 @@
 package com.example.skyex;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -32,6 +34,7 @@ public class EditCardActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private CardModel cardModel;
+    private AlertDialog.Builder builder;
 
     private String ID;
 
@@ -312,7 +315,18 @@ public class EditCardActivity extends AppCompatActivity {
         deleteCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteCard();
+                builder.setTitle("Are you sure?")
+                        .setMessage("Deleted data stay deleted").setCancelable(true).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                deleteCard();
+                            }
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                startActivity(new Intent(EditCardActivity.this, ShippingActivity.class));
+                            }
+                        }).show();
             }
         });
 
