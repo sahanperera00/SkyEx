@@ -69,7 +69,7 @@ public class ExploreActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                        startActivity(new Intent(getApplicationContext(),UserDashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

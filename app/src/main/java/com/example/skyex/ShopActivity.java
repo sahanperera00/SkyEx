@@ -70,7 +70,7 @@ public class ShopActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(),UserProfilePage.class));
+                        startActivity(new Intent(getApplicationContext(),UserDashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
