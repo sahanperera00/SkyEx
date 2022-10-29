@@ -7,9 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LandingPageActivity extends AppCompatActivity {
     Button btnSignup;
     Button btnLogin;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +23,15 @@ public class LandingPageActivity extends AppCompatActivity {
 
         btnSignup = findViewById(R.id.btn_signup);
         btnLogin = findViewById(R.id.btn_login);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        if (firebaseUser!=null) {
+            if (firebaseUser.isEmailVerified()){
+                startActivity(new Intent(LandingPageActivity.this,ShopActivity.class));
+                finish();
+            }
+        }
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override

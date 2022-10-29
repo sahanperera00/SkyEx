@@ -28,7 +28,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
-            android:id="@+id/IDIBcart"
+            android:id="@+id/idIBCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -239,9 +239,10 @@
                 android:layout_height="46dp"
                 android:layout_marginTop="56dp"
                 android:ems="10"
-                android:inputType="number"
+                android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textSize="18sp"
+                android:focusable="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.148"
                 app:layout_constraintStart_toEndOf="@+id/idTVQuantity"
