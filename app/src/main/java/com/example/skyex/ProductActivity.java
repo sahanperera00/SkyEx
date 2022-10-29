@@ -42,7 +42,7 @@ public class ProductActivity extends AppCompatActivity {
         productImage = findViewById(R.id.idIVProductImage);
         productDescription = findViewById(R.id.idTVProductDescription);
         backProductButton = findViewById(R.id.idIBBackProduct);
-        cartButton = findViewById(R.id.IDIBcart);
+        cartButton = findViewById(R.id.idIBCart);
         addtocartButton = findViewById(R.id.idAddToCartBtn);
         addQuantity = findViewById(R.id.IDTIQuantity);
         collectionName = getIntent().getExtras().getString("collection");
