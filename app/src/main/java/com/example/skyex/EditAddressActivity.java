@@ -1,8 +1,10 @@
 package com.example.skyex;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +30,7 @@ public class EditAddressActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     AddressModel addressModel;
+    private AlertDialog.Builder builder;
 
     private String ID;
 
@@ -107,7 +110,18 @@ public class EditAddressActivity extends AppCompatActivity {
             deleteAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    deleteAddress();
+                    builder.setTitle("Are you sure?")
+                                    .setMessage("Deleted data stay deleted").setCancelable(true).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    deleteAddress();
+                                }
+                            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    startActivity(new Intent(EditAddressActivity.this, ShippingActivity.class));
+                                }
+                            }).show();
                 }
             });
 
