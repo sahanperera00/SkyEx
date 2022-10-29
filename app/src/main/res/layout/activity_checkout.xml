@@ -61,6 +61,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
         android:text="Sub Total"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
@@ -158,12 +159,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Shipping Modes"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/spinShipping"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.558" />
+        app:layout_constraintVertical_bias="0.576" />
 
     <Button
         android:id="@+id/button"
