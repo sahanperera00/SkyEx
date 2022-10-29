@@ -75,7 +75,11 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/edit_btn_bg"
+        android:backgroundTint="@color/black"
         android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -94,13 +98,16 @@
 <!--        app:layout_constraintStart_toStartOf="parent" />-->
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="343dp"
+        android:layout_height="46dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="52dp"
         android:background="@drawable/edit_btn_bg"
+        android:backgroundTint="@color/white"
         android:text="Signup"
+        android:textAllCaps="false"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
