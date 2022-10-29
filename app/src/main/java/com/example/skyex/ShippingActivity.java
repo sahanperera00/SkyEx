@@ -46,6 +46,8 @@ public class ShippingActivity extends AppCompatActivity implements AddressAdapte
         adl2 = findViewById(R.id.textAddressLine2);
         city = findViewById(R.id.textCity);
 
+
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Addresses");
         addressModelArrayList = new ArrayList<>();
