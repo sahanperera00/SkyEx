@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/drawable/rounded_button.xml" value="0.137" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_add_address.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_add_card.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_checkout.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_edit_address.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_edit_card.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_payment.xml" value="0.2604166666666667" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_shipping.xml" value="0.27447916666666666" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/activity_shopping_cart.xml" value="0.16944444444444445" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/address_card.xml" value="0.27025641025641023" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/card_item.xml" value="0.2734375" />
+        <entry key="..\:/MAD Project/SkyEx/app/src/main/res/layout/cart_item.xml" value="0.2692307692307692" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/drawable/ss.xml" value="0.2375" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_collection.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_product.xml" value="0.2" />
@@ -27,6 +39,12 @@
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/product_card.xml" value="0.264" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/product_hcard.xml" value="0.4" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/menu/bottom_navbar.xml" value="0.17421875" />
+        <entry key="..\:/Users/dell/Desktop/Y2/Y2S2/Projects/MAD/SkyEx/SkyEx/app/src/main/res/drawable/edit_btn_bg.xml" value="0.2545" />
+        <entry key="..\:/Users/dell/Desktop/Y2/Y2S2/Projects/MAD/SkyEx/SkyEx/app/src/main/res/drawable/edit_text_bg.xml" value="0.2545" />
+        <entry key="..\:/Users/dell/Desktop/Y2/Y2S2/Projects/MAD/SkyEx/SkyEx/app/src/main/res/layout/activity_landing_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dell/Desktop/Y2/Y2S2/Projects/MAD/SkyEx/SkyEx/app/src/main/res/layout/activity_login_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dell/Desktop/Y2/Y2S2/Projects/MAD/SkyEx/SkyEx/app/src/main/res/layout/activity_signup_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dell/Desktop/Y2/Y2S2/Projects/MAD/SkyEx/SkyEx/app/src/main/res/layout/activity_user_profile_page.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
