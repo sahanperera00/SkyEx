@@ -34,6 +34,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
+
         cartRV = findViewById(R.id.IDRVshoppingCart);
         next = findViewById(R.id.proceedCheckoutActivity);
 //        temp = findViewById(R.id.temp);

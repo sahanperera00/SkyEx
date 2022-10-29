@@ -100,12 +100,14 @@ public class SignupPage extends AppCompatActivity {
                                         Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
                                         User readWriteUserDetails = new User(textfirstname,textlastname,textemail,textpassword);
 
+                                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered User");
+                                        databaseReference.child(firebaseUser.getUid()).setValue(readWriteUserDetails);
+
                                         Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
-                                        loginactivity.putExtra("readWriteUserDetails", readWriteUserDetails);
-//                                        loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(loginactivity);
                                         finish();
 
+//                                        loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
 //                                        if (firebaseUser.isEmailVerified()){
 //                                            Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
 //                                            loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
