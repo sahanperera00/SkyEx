@@ -23,7 +23,8 @@ public class UserProfilePage extends AppCompatActivity {
     private TextView tvFName,tvLName,tvEmail,tvPassword;
     private String fName,lName,email,password;
     private Button btnLogout;
-    private FirebaseAuth mAuth;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,35 +34,35 @@ public class UserProfilePage extends AppCompatActivity {
         tvFName = findViewById(R.id.fname);
         tvLName = findViewById(R.id.lname);
         tvEmail = findViewById(R.id.email);
-//        tvPassword = findViewById(R.id.password);
         btnLogout = findViewById(R.id.btnLogout);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+//        tvPassword = findViewById(R.id.password);
+//        logout();
+//        if(firebaseUser == null){
+//            Toast.makeText(UserProfilePage.this,"Error! User details not available",Toast.LENGTH_LONG).show();
+//        }else{
+//            displayUserProfile(firebaseUser);
+//        }
 
-        mAuth = FirebaseAuth.getInstance();
-        logout();
-
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-
-        if(firebaseUser == null){
-            Toast.makeText(UserProfilePage.this,"Error! User details not available",Toast.LENGTH_LONG).show();
-        }else{
-            displayUserProfile(firebaseUser);
-        }
-
-    }
-
-    private void logout() {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth.signOut();
+                firebaseAuth.signOut();
+
                 Toast.makeText(UserProfilePage.this,"Logout success",Toast.LENGTH_LONG).show();
-                Intent logoutactivity = new Intent(UserProfilePage.this,LandingPage.class);
-                logoutactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | logoutactivity.FLAG_ACTIVITY_CLEAR_TASK| logoutactivity.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(logoutactivity);
+                Intent intent = new Intent(UserProfilePage.this,LoginPage.class);
+//                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | logoutactivity.FLAG_ACTIVITY_CLEAR_TASK| logoutactivity.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 finish();
             }
         });
+
     }
+
+//    private void logout() {
+
+//    }
 
     private void displayUserProfile(FirebaseUser firebaseUser){
         String id = firebaseUser.getUid();

@@ -2,6 +2,7 @@ package com.example.skyex;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,7 +66,6 @@ public class SignupPage extends AppCompatActivity {
                 String textemail = etEmail.getText().toString();
                 String textpassword = etPassword.getText().toString();
 
-
                 //check if fields are empty
                 if (TextUtils.isEmpty(textfirstname)) {
                     Toast.makeText(SignupPage.this, "Please enter first name", Toast.LENGTH_SHORT).show();
@@ -81,48 +82,63 @@ public class SignupPage extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(textpassword)) {
                     Toast.makeText(SignupPage.this, "Please enter password", Toast.LENGTH_SHORT).show();
                     etPassword.requestFocus();
-                }else if (textpassword.length()<6) {
+                } else if (textpassword.length()<6) {
                     Toast.makeText(SignupPage.this, "Password is too short!", Toast.LENGTH_SHORT).show();
                     etPassword.requestFocus();
-                }else{
-                    progressBar.setVisibility(View.VISIBLE);
+                } else {
+//                    progressBar.setVisibility(View.VISIBLE);
                     mAuth.createUserWithEmailAndPassword(textemail,textpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-
+                                String uid = mAuth.getUid();
                                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
-                                //enter user data into DB
-                                User readWriteUserDetails = new User(textfirstname,textlastname,textemail,textpassword);
-
-                                DatabaseReference refprofile = FirebaseDatabase.getInstance().getReference("Registered User");
-                                refprofile.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-
+                                firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
+                                        User readWriteUserDetails = new User(textfirstname,textlastname,textemail,textpassword);
 
-                                        if(task.isSuccessful()){
-//                                            //send email verification
-//                                            firebaseUser.sendEmailVerification();
+                                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered User");
+                                        databaseReference.child(firebaseUser.getUid()).setValue(readWriteUserDetails);
 
-                                            Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
+                                        Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
+                                        startActivity(loginactivity);
+                                        finish();
 
-                                            //redirect to login activity
-                                            Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
-                                               loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
-                                            startActivity(loginactivity);
-                                            finish();
-                                        }else{
-                                            Toast.makeText(SignupPage.this, "Registration failed!",Toast.LENGTH_SHORT).show();
-
-                                        }
-                                        progressBar.setVisibility(View.GONE);
-
+//                                        loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
+//                                        if (firebaseUser.isEmailVerified()){
+//                                            Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
+//                                            loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
+//                                            startActivity(loginactivity);
+//                                            finish();
+//                                        }else {
+//                                            Toast.makeText(SignupPage.this, "Email not verified", Toast.LENGTH_SHORT).show();
+//                                        }
                                     }
                                 });
 
-                            }else{
+//                                DatabaseReference refprofile = FirebaseDatabase.getInstance().getReference("Registered User");
+//                                refprofile.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<Void> task) {
+//                                        if(task.isSuccessful()){
+//                                            //send email verification
+//                                            firebaseUser.sendEmailVerification();
+//
+//                                            Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
+//
+//                                            //redirect to login activity
+////
+//                                        }else{
+//                                            Toast.makeText(SignupPage.this, "Registration failed!",Toast.LENGTH_SHORT).show();
+//                                        }
+//                                        progressBar.setVisibility(View.GONE);
+//                                    }
+//                                });
+
+                            }else {
                                try{
                                    throw task.getException();
                                }catch(FirebaseAuthUserCollisionException e) {

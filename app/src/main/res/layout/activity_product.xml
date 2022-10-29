@@ -28,7 +28,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/idIBCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -203,6 +203,20 @@
                 app:layout_constraintStart_toStartOf="@+id/textView12"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
+            <TextView
+                android:id="@+id/idTVQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="72dp"
+                android:layout_marginTop="72dp"
+                android:text="Quantity"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+
+                app:layout_constraintStart_toEndOf="@+id/idTVProductSize"
+                app:layout_constraintTop_toBottomOf="@+id/idTVProductDescription" />
+
             <Button
                 android:id="@+id/idAddToCartBtn"
                 android:layout_width="0dp"
@@ -218,6 +232,21 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/IDTIQuantity"
+                android:layout_width="54dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="56dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:focusable="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.148"
+                app:layout_constraintStart_toEndOf="@+id/idTVQuantity"
+                app:layout_constraintTop_toBottomOf="@+id/idTVProductDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
