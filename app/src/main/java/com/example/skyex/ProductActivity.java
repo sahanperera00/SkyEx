@@ -25,7 +25,7 @@ public class ProductActivity extends AppCompatActivity {
     private ImageView productImage;
     private ImageButton backProductButton, cartButton;
     private Button addtocartButton;
-    private TextInputEditText addQuantity;
+    private TextInputEditText addQuantity = null;
     private String collectionName;
     private ProductModel productModel;
     private FirebaseDatabase firebaseDatabase;
@@ -62,8 +62,6 @@ public class ProductActivity extends AppCompatActivity {
         String ID = productName.getText().toString();
         specificdatabasereference = firebaseDatabase.getReference("Carts").child(ID);
 
-
-
         specificdatabasereference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -76,12 +74,12 @@ public class ProductActivity extends AppCompatActivity {
                 else{
                     String dbID = dbIDobject.toString();
                     if(dbID.equals(ID)){
-                        addtocartButton.setClickable(false);
+//                        addtocartButton.setClickable(false);
+                        addtocartButton.setVisibility(View.GONE);
                     }
                     else
                         addtocartButton.setClickable(true);
                 }
-
             }
 
                 @Override
@@ -94,21 +92,23 @@ public class ProductActivity extends AppCompatActivity {
         addtocartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = productName.getText().toString();
-                String quantity = addQuantity.getText().toString();
-                String price = productPrice.getText().toString();
-                String size = productSize.getText().toString();
-                String ID = name;
+                if (String.valueOf(addQuantity.getText()).equals("")){
+                    Toast.makeText(ProductActivity.this, "Add quantity", Toast.LENGTH_SHORT).show();
+                }else {
+                    String quantity = addQuantity.getText().toString();
+                    String name = productName.getText().toString();
+                    String price = productPrice.getText().toString();
+                    String size = productSize.getText().toString();
+                    String image = productModel.getProductImage().toString();
+                    String ID = name;
 
-                CartModel cartModel = new CartModel(name, size, quantity,price, ID);
+                    CartModel cartModel = new CartModel(name, size, quantity,price, ID, image);
 
-                databaseReference.child(ID).setValue(cartModel);
-                Toast.makeText(ProductActivity.this, "Product Added to the cart", Toast.LENGTH_SHORT).show();
-
+                    databaseReference.child(ID).setValue(cartModel);
+                    Toast.makeText(ProductActivity.this, "Product Added to the cart", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-
 
         backProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +116,7 @@ public class ProductActivity extends AppCompatActivity {
                 Intent intent = new Intent(ProductActivity.this, ProductViewActivity.class);
                 intent.putExtra("collection", collectionName);
                 startActivity(intent);
-                overridePendingTransition(0,0);
+//                overridePendingTransition(0,0);
             }
         });
 
@@ -124,6 +124,8 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProductActivity.this, ShoppingCartActivity.class);
+                intent.putExtra("collection", collectionName);
+                intent.putExtra("product", productModel);
                 startActivity(intent);
             }
         });

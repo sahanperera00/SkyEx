@@ -10,15 +10,17 @@ public class CartModel implements Parcelable {
     private String Quantity;
     private String Price;
     private String ID;
+    private String CartImg;
 
     public CartModel(){}
 
-    public CartModel(String Name, String Size, String Quantity, String Price, String ID) {
-        this.Name = Name;
-        this.Size = Size;
-        this.Quantity = Quantity;
-        this.Price = Price;
+    public CartModel(String name, String size, String quantity, String price, String ID, String cartImg) {
+        Name = name;
+        Size = size;
+        Quantity = quantity;
+        Price = price;
         this.ID = ID;
+        CartImg = cartImg;
     }
 
     protected CartModel(Parcel in) {
@@ -27,7 +29,20 @@ public class CartModel implements Parcelable {
         Quantity = in.readString();
         Price = in.readString();
         ID = in.readString();
+        CartImg = in.readString();
     }
+
+    public static final Creator<CartModel> CREATOR = new Creator<CartModel>() {
+        @Override
+        public CartModel createFromParcel(Parcel in) {
+            return new CartModel(in);
+        }
+
+        @Override
+        public CartModel[] newArray(int size) {
+            return new CartModel[size];
+        }
+    };
 
     public String getName() {
         return Name;
@@ -69,17 +84,13 @@ public class CartModel implements Parcelable {
         this.ID = ID;
     }
 
-    public static final Creator<CartModel> CREATOR = new Creator<CartModel>() {
-        @Override
-        public CartModel createFromParcel(Parcel in) {
-            return new CartModel(in);
-        }
+    public String getCartImg() {
+        return CartImg;
+    }
 
-        @Override
-        public CartModel[] newArray(int size) {
-            return new CartModel[size];
-        }
-    };
+    public void setCartImg(String cartImg) {
+        CartImg = cartImg;
+    }
 
     @Override
     public int describeContents() {
@@ -93,5 +104,6 @@ public class CartModel implements Parcelable {
         parcel.writeString(Quantity);
         parcel.writeString(Price);
         parcel.writeString(ID);
+        parcel.writeString(CartImg);
     }
 }

@@ -45,6 +45,16 @@ public class LoginPage extends AppCompatActivity {
         readWriteUserDetails = getIntent().getParcelableExtra("readWriteUserDetails");
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
+        //switch to forgot pw
+        TextView tvresetpw = findViewById(R.id.tvResetPw);
+        tvresetpw.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent resetActivity = new Intent(LoginPage.this,ForgotPasswordActivity.class);
+                startActivity(resetActivity);
+            }
+        });
+
         //switch to register user  activity
         TextView tvRegister = findViewById(R.id.tvRegisterLink);
         tvRegister.setOnClickListener(new View.OnClickListener(){

@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -39,7 +37,7 @@ public class ShippingActivity extends AppCompatActivity implements AddressAdapte
         setContentView(R.layout.activity_shipping);
         addressRV = findViewById(R.id.RVaddress);
         addAddress = findViewById(R.id.button2);
-        next  = findViewById(R.id.button3);
+        next  = findViewById(R.id.btnUpdateProfile);
 
         name = findViewById(R.id.name);
         adl1 = findViewById(R.id.textAddressLine1);
