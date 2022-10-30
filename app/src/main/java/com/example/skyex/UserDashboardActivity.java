@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class UserDashboardActivity extends AppCompatActivity {
 
     private TextView tvWelcome,tvDashFName,tvDashEmail,tvViewFName,tvViewLName,tvViewEmail,tvViewPassword;
@@ -42,6 +44,60 @@ public class UserDashboardActivity extends AppCompatActivity {
         tvViewEmail = findViewById(R.id.tvViewEmail);
         tvViewPassword = findViewById(R.id.tvViewPassword);
 //        tvWelcome = findViewById(R.id.tvDashWelcome);
+
+        btnLoyalty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Loyalty");
+                DatabaseReference loyMem = databaseReference.child(firebaseUser.getUid().toString());
+                loyMem.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        LoyaltyModel loyaltyModel = new LoyaltyModel();
+
+                        if (!snapshot.exists()){
+                            Toast.makeText(UserDashboardActivity.this, "Not a Loyalty member", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(UserDashboardActivity.this, AddLoyaltyActivity.class));
+                            overridePendingTransition(0, 0);
+                            finish();
+                        }else {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                if (Objects.equals(dataSnapshot.getKey(),"name")){
+                                    loyaltyModel.setName(dataSnapshot.getValue().toString());
+                                }
+                                if (Objects.equals(dataSnapshot.getKey(),"nic")){
+                                    loyaltyModel.setNic(dataSnapshot.getValue().toString());
+                                }
+                                if (Objects.equals(dataSnapshot.getKey(),"email")){
+                                    loyaltyModel.setEmail(dataSnapshot.getValue().toString());
+                                }
+                                if (Objects.equals(dataSnapshot.getKey(),"phoneNo")){
+                                    loyaltyModel.setPhoneNo(dataSnapshot.getValue().toString());
+                                }
+                                if (Objects.equals(dataSnapshot.getKey(),"points")){
+                                    loyaltyModel.setPoints(dataSnapshot.getValue().toString());
+                                    System.out.println(dataSnapshot.getValue().toString());
+                                }
+                            }
+
+                            Intent intent = new Intent(UserDashboardActivity.this, LoyaltyViewActivity.class);
+                            intent.putExtra("loyaltyModel", loyaltyModel);
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
         //switch to update profile activity
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
