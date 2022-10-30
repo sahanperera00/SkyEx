@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -273,7 +274,18 @@ public class EditCardActivity extends AppCompatActivity {
 
                 String finalNumber = number1 + number2 + number3 + number4;
 
-                ID = finalNumber;
+                if (TextUtils.isEmpty(month)) {
+                    Toast.makeText(EditCardActivity.this, "Please enter the month", Toast.LENGTH_SHORT).show();
+                    editCardMonth.requestFocus();
+                } else if (TextUtils.isEmpty(year)) {
+                    Toast.makeText(EditCardActivity.this, "Please enter the year ", Toast.LENGTH_SHORT).show();
+                    editCardYear.requestFocus();
+                } else if (TextUtils.isEmpty(name)) {
+                    Toast.makeText(EditCardActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
+                    editCardYear.requestFocus();
+                } else{
+
+                    ID = finalNumber;
 
                 Map<String, Object> map = new HashMap<>();
                 map.put("CardNumber", finalNumber);
@@ -300,17 +312,16 @@ public class EditCardActivity extends AppCompatActivity {
                 databaseReference.updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isComplete()){
+                        if (task.isComplete()) {
                             Toast.makeText(EditCardActivity.this, "Card successfully updated", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(EditCardActivity.this, PaymentActivity.class));
                             finish();
-                        }
-
-                        else{
+                        } else {
                             Toast.makeText(EditCardActivity.this, "Error in adding the card ", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+            }
             }
         });
 

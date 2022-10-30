@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,23 +50,38 @@ public class addAddressActivity extends AppCompatActivity {
 
                 ID = Name;
 
-                AddressModel addressModel = new AddressModel(Name, AddressLine1, AddressLine2, City, ID);
+                if (TextUtils.isEmpty(Name)) {
+                    Toast.makeText(addAddressActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
+                    name.requestFocus();
+                } else if (TextUtils.isEmpty(AddressLine1)) {
+                    Toast.makeText(addAddressActivity.this, "Please enter the first line of the address ", Toast.LENGTH_SHORT).show();
+                    addressLine1.requestFocus();
+                } else if (TextUtils.isEmpty(AddressLine2)) {
+                    Toast.makeText(addAddressActivity.this, "Please enter the second line of the address ", Toast.LENGTH_SHORT).show();
+                    addressLine2.requestFocus();
+                } else if (TextUtils.isEmpty(City)) {
+                    Toast.makeText(addAddressActivity.this, "Please enter a city ", Toast.LENGTH_SHORT).show();
+                    city.requestFocus();
+                } else{
 
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        databaseReference.child(ID).setValue(addressModel);
-                        Toast.makeText(addAddressActivity.this, "Address successfully added", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(addAddressActivity.this, ShippingActivity.class));
+                    AddressModel addressModel = new AddressModel(Name, AddressLine1, AddressLine2, City, ID);
 
-                    }
+                    databaseReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            databaseReference.child(ID).setValue(addressModel);
+                            Toast.makeText(addAddressActivity.this, "Address successfully added", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(addAddressActivity.this, ShippingActivity.class));
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(addAddressActivity.this, "Error in adding the address: "+ databaseError.toString(), Toast.LENGTH_SHORT).show();
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(addAddressActivity.this, "Error in adding the address: " + databaseError.toString(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+            }
             }
         });
 

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +46,7 @@ public class AddCardActivity extends AppCompatActivity {
         editCardMonth = findViewById(R.id.editCardMonth);
         editCardYear = findViewById(R.id.editCardYear);
         editCardHolder = findViewById(R.id.editCardHolder);
+
         textNumber1 = findViewById(R.id.textNumber1);
         textNumber2 = findViewById(R.id.textNumber2);
         textNumber3 = findViewById(R.id.textNumber3);
@@ -192,13 +194,24 @@ public class AddCardActivity extends AppCompatActivity {
                                        @Override
                                        public void onClick(View view) {
 
-                                           String CardNumber = editCardNumber1.getText().toString() + editCardNumber2.getText().toString() + editCardNumber3.getText().toString() + editCardNumber4.getText().toString() ;
+                                           String CardNumber = editCardNumber1.getText().toString() + editCardNumber2.getText().toString() + editCardNumber3.getText().toString() + editCardNumber4.getText().toString();
                                            String month = editCardMonth.getText().toString();
                                            String year = editCardYear.getText().toString();
                                            String name = editCardHolder.getText().toString();
 
-                                           ID = CardNumber;
 
+                                           if (TextUtils.isEmpty(month)) {
+                                               Toast.makeText(AddCardActivity.this, "Please enter the month", Toast.LENGTH_SHORT).show();
+                                               editCardMonth.requestFocus();
+                                           } else if (TextUtils.isEmpty(year)) {
+                                               Toast.makeText(AddCardActivity.this, "Please enter the year ", Toast.LENGTH_SHORT).show();
+                                               editCardYear.requestFocus();
+                                           } else if (TextUtils.isEmpty(name)) {
+                                               Toast.makeText(AddCardActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
+                                               editCardYear.requestFocus();
+                                           } else{
+
+                                               ID = CardNumber;
 
 
                                            CardModel cardModel = new CardModel(CardNumber, month, year, name, ID);
@@ -213,12 +226,12 @@ public class AddCardActivity extends AppCompatActivity {
 
                                                @Override
                                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                                   Toast.makeText(AddCardActivity.this, "Error in adding the card: "+ databaseError.toString(), Toast.LENGTH_SHORT).show();
+                                                   Toast.makeText(AddCardActivity.this, "Error in adding the card: " + databaseError.toString(), Toast.LENGTH_SHORT).show();
 
                                                }
                                            });
 
-
+                                       }
                                        }
                                    }
 

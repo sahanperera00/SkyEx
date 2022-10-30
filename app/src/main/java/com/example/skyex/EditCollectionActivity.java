@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,23 +53,32 @@ public class EditCollectionActivity extends AppCompatActivity {
                 String collectionName = collectionNameEdt.getText().toString();
                 String collectionImage = collectionImageEdt.getText().toString();
 
-                Map<String,Object> map = new HashMap<>();
-                map.put("collectionId", collectionId);
-                map.put("collectionName", collectionName);
-                map.put("collectionImage", collectionImage);
+                if (TextUtils.isEmpty(collectionName)) {
+                    Toast.makeText(EditCollectionActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
+                    collectionNameEdt.requestFocus();
+                } else if (TextUtils.isEmpty(collectionImage)) {
+                    Toast.makeText(EditCollectionActivity.this, "Please enter a URL of a Image", Toast.LENGTH_SHORT).show();
+                    collectionImageEdt.requestFocus();
+                } else{
 
-                databaseReference.updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(EditCollectionActivity.this, "Collection updated", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(EditCollectionActivity.this, ExploreActivity.class));
-                            finish();
-                        }else {
-                            Toast.makeText(EditCollectionActivity.this, "Update unsuccessful", Toast.LENGTH_SHORT).show();
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("collectionId", collectionId);
+                    map.put("collectionName", collectionName);
+                    map.put("collectionImage", collectionImage);
+
+                    databaseReference.updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(EditCollectionActivity.this, "Collection updated", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(EditCollectionActivity.this, ExploreActivity.class));
+                                finish();
+                            } else {
+                                Toast.makeText(EditCollectionActivity.this, "Update unsuccessful", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+            }
             }
         });
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,29 +67,50 @@ public class EditProductActivity extends AppCompatActivity {
                 String productPrice = productPriceEdt.getText().toString();
                 String productImage = productImageEdt.getText().toString();
 
-                Map<String,Object> map = new HashMap<>();
-                map.put("productId",productId);
-                map.put("productName",productName);
-                map.put("productDescription",productDescription);
-                map.put("productType", productType);
-                map.put("productCollection", productCollection);
-                map.put("productPrice", productPrice);
-                map.put("productImage", productImage);
+                if (TextUtils.isEmpty(productName)) {
+                    Toast.makeText(EditProductActivity.this, "Please enter a product name", Toast.LENGTH_SHORT).show();
+                    productNameEdt.requestFocus();
+                } else if (TextUtils.isEmpty(productDescription)) {
+                    Toast.makeText(EditProductActivity.this, "Please enter a description", Toast.LENGTH_SHORT).show();
+                    productDescriptionEdt.requestFocus();
+                } else if (TextUtils.isEmpty(productType)) {
+                    Toast.makeText(EditProductActivity.this, "Please enter a type", Toast.LENGTH_SHORT).show();
+                    productTypeEdt.requestFocus();
+                } else if (TextUtils.isEmpty(productCollection)) {
+                    Toast.makeText(EditProductActivity.this, "Please enter a collection", Toast.LENGTH_SHORT).show();
+                    productCollectionEdt.requestFocus();
+                } else if (TextUtils.isEmpty(productPrice)) {
+                    Toast.makeText(EditProductActivity.this, "Please enter a price", Toast.LENGTH_SHORT).show();
+                    productPriceEdt.requestFocus();
+                } else if (TextUtils.isEmpty(productImage)) {
+                    Toast.makeText(EditProductActivity.this, "Please enter a URL for a image", Toast.LENGTH_SHORT).show();
+                    productImageEdt.requestFocus();
+                } else{
 
-                databaseReference.updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(EditProductActivity.this, "Product updated", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(EditProductActivity.this,ProductViewActivity.class);
-                            intent.putExtra("collection", productCollection);
-                            startActivity(intent);
-                            finish();
-                        }else{
-                            Toast.makeText(EditProductActivity.this, "Update unsuccessful", Toast.LENGTH_SHORT).show();
+                        Map<String, Object> map = new HashMap<>();
+                    map.put("productId", productId);
+                    map.put("productName", productName);
+                    map.put("productDescription", productDescription);
+                    map.put("productType", productType);
+                    map.put("productCollection", productCollection);
+                    map.put("productPrice", productPrice);
+                    map.put("productImage", productImage);
+
+                    databaseReference.updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(EditProductActivity.this, "Product updated", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(EditProductActivity.this, ProductViewActivity.class);
+                                intent.putExtra("collection", productCollection);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(EditProductActivity.this, "Update unsuccessful", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+            }
             }
         });
 //System.out.println(productCollection);

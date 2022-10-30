@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,25 +40,35 @@ public class AddCollectionActivity extends AppCompatActivity {
 
                 String collectionName = collectionNameEdt.getText().toString();
                 String collectionImage = collectionImageEdt.getText().toString();
-                collectionId = collectionName;
 
-                CollectionModel collectionModel = new CollectionModel(
-                        collectionId,
-                        collectionName,
-                        collectionImage
-                );
-                databaseReference.child(collectionId).setValue(collectionModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(AddCollectionActivity.this, "Collection added", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AddCollectionActivity.this,ExploreActivity.class));
-                            finish();
-                        }else {
-                            Toast.makeText(AddCollectionActivity.this, "Add unsuccessful", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(collectionName)) {
+                    Toast.makeText(AddCollectionActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
+                    collectionNameEdt.requestFocus();
+                } else if (TextUtils.isEmpty(collectionImage)) {
+                    Toast.makeText(AddCollectionActivity.this, "Please enter a URL of a Image", Toast.LENGTH_SHORT).show();
+                    collectionImageEdt.requestFocus();
+                } else{
+                    collectionId = collectionName;
+
+                    CollectionModel collectionModel = new CollectionModel(
+                            collectionId,
+                            collectionName,
+                            collectionImage
+                    );
+                    databaseReference.child(collectionId).setValue(collectionModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(AddCollectionActivity.this, "Collection added", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(AddCollectionActivity.this, ExploreActivity.class));
+                                finish();
+                            } else {
+                                Toast.makeText(AddCollectionActivity.this, "Add unsuccessful", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+
+            }
             }
         });
     }

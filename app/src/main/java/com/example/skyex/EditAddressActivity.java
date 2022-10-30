@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -70,7 +71,22 @@ public class EditAddressActivity extends AppCompatActivity {
                     String AddressLine2 = addressLine2.getText().toString();
                     String City = city.getText().toString();
 
-                    ID = Name;
+
+                    if (TextUtils.isEmpty(Name)) {
+                        Toast.makeText(EditAddressActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
+                        name.requestFocus();
+                    } else if (TextUtils.isEmpty(AddressLine1)) {
+                        Toast.makeText(EditAddressActivity.this, "Please enter the first line of the address ", Toast.LENGTH_SHORT).show();
+                        addressLine1.requestFocus();
+                    } else if (TextUtils.isEmpty(AddressLine2)) {
+                        Toast.makeText(EditAddressActivity.this, "Please enter the second line of the address ", Toast.LENGTH_SHORT).show();
+                        addressLine2.requestFocus();
+                    } else if (TextUtils.isEmpty(City)) {
+                        Toast.makeText(EditAddressActivity.this, "Please enter a city ", Toast.LENGTH_SHORT).show();
+                        city.requestFocus();
+                    } else{
+
+                        ID = Name;
 
                     Map<String, Object> map = new HashMap<>();
                     map.put("name", Name);
@@ -91,6 +107,8 @@ public class EditAddressActivity extends AppCompatActivity {
                             }
                         }
                     });
+
+                }
 
 //                    databaseReference.addValueEventListener(new ValueEventListener() {
 //                        @Override
