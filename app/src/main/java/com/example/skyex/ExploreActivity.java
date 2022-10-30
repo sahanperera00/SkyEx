@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -102,8 +104,15 @@ public class ExploreActivity extends AppCompatActivity {
                 return false;
             }
         });
+        FirebaseUser firebaseUser;
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String Uid = firebaseUser.getUid();
 
-        addCollecitionButton.setVisibility(View.GONE);
+        if (Uid.equals("jAyIlbUmERM6xoxmYqf1UWxlR7B2")){
+            addCollecitionButton.setVisibility(View.VISIBLE);
+        }else {
+            addCollecitionButton.setVisibility(View.GONE);
+        }
 
         addCollecitionButton.setOnClickListener(new View.OnClickListener() {
             @Override

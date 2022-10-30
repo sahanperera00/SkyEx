@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -83,8 +85,15 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.MyVi
             prPrice = itemView.findViewById(R.id.etvProductPrice);
             prEditBtn = itemView.findViewById(R.id.idEditBtn2);
             prImage = itemView.findViewById(R.id.idIBProduct);
+            FirebaseUser firebaseUser;
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            String Uid = firebaseUser.getUid();
 
-            prEditBtn.setVisibility(View.GONE);
+            if (Uid.equals("jAyIlbUmERM6xoxmYqf1UWxlR7B2")){
+                prEditBtn.setVisibility(View.VISIBLE);
+            }else {
+                prEditBtn.setVisibility(View.GONE);
+            }
 //            prRelativeLayout = itemView.findViewById(R.id.idRLCollection);
         }
     }

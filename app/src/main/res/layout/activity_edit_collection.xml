@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".EditCollectionActivity">
 
+    <TextView
+        android:id="@+id/idTVExploreProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="152dp"
+        android:text="Update Collection"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/edtCollectionName"
         android:layout_width="0dp"
@@ -41,7 +57,7 @@
     <Button
         android:id="@+id/btnDeleteCollection"
         android:layout_width="344dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
@@ -57,7 +73,7 @@
     <Button
         android:id="@+id/btnUpdateCollection"
         android:layout_width="344dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="32dp"

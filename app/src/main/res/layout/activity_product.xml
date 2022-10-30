@@ -53,12 +53,12 @@
 
     <ScrollView
         android:layout_width="409dp"
-        android:layout_height="399dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idIVProductImage"
-        android:fillViewport="true">
+        app:layout_constraintTop_toBottomOf="@+id/idIVProductImage">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 android:text="Product Name"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black"
@@ -121,9 +121,9 @@
                 android:layout_marginTop="38dp"
                 android:layout_marginEnd="6dp"
                 android:text="Save"
-                android:visibility="gone"
                 android:textColor="@color/black"
                 android:textSize="18dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -202,7 +202,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Description"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="@+id/imageButton"
+                app:layout_constraintEnd_toEndOf="@+id/idTVProductName"
                 app:layout_constraintStart_toStartOf="@+id/textView12"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -212,11 +212,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="72dp"
                 android:layout_marginTop="72dp"
+                android:layout_marginEnd="16dp"
                 android:text="Quantity"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/IDTIQuantity"
                 app:layout_constraintStart_toEndOf="@+id/idTVProductSize"
                 app:layout_constraintTop_toBottomOf="@+id/idTVProductDescription" />
 
@@ -241,14 +243,14 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/IDTIQuantity"
-                android:layout_width="54dp"
+                android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_marginTop="56dp"
                 android:ems="10"
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/idTVProductDescription"
                 app:layout_constraintHorizontal_bias="0.148"
                 app:layout_constraintStart_toEndOf="@+id/idTVQuantity"
                 app:layout_constraintTop_toBottomOf="@+id/idTVProductDescription" />
@@ -256,4 +258,22 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
