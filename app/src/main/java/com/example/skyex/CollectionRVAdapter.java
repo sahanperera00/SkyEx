@@ -21,6 +21,11 @@ public class CollectionRVAdapter extends RecyclerView.Adapter<CollectionRVAdapte
     Context context;
     ArrayList<CollectionModel> collectionModelArrayList;
 
+    public void setCollectionModelArrayList(ArrayList<CollectionModel> collectionModelArrayList) {
+        this.collectionModelArrayList = collectionModelArrayList;
+        notifyDataSetChanged();
+    }
+
     public CollectionRVAdapter(Context context, ArrayList<CollectionModel> collectionModelArrayList) {
         this.context = context;
         this.collectionModelArrayList = collectionModelArrayList;

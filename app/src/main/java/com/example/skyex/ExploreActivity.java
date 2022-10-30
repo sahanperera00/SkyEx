@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.AbstractCollection;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class ExploreActivity extends AppCompatActivity {
@@ -34,8 +39,10 @@ public class ExploreActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private SearchView searchView;
     private ArrayList<CollectionModel> collectionModelArrayList;
     private CollectionRVAdapter collectionRVAdapter;
+    private List<ClipData.Item> itemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,22 @@ public class ExploreActivity extends AppCompatActivity {
         addCollecitionButton = findViewById(R.id.idAddCollectionBtn);
         recyclerView = findViewById(R.id.ExploreRecyclerView);
         collectionModelArrayList = new ArrayList<>();
+        itemList = new ArrayList<>();
+
+        searchView = findViewById(R.id.idSVExplore);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return false;
+            }
+        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.explore);
@@ -100,6 +123,21 @@ public class ExploreActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void filterList(String text) {
+        ArrayList<CollectionModel> filteredList = new ArrayList<>();
+        for (CollectionModel model : collectionModelArrayList) {
+            if (model.getCollectionName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(model);
+            }
+        }
+        if (filteredList.isEmpty()){
+            Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
+        }else{
+            collectionRVAdapter.setCollectionModelArrayList(filteredList);
+        }
+    }
+
 
     private void getAllCollections() {
         databaseReference.addValueEventListener(new ValueEventListener() {
