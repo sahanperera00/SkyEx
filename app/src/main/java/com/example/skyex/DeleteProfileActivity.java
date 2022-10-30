@@ -152,6 +152,23 @@ public class DeleteProfileActivity extends AppCompatActivity {
     }
 
     private void deleteUser(FirebaseUser firebaseUser) {
+        firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    mAuth.signOut();
+                    Toast.makeText(DeleteProfileActivity.this, "Account deletion success", Toast.LENGTH_SHORT).show();
+                    Intent deleteActivity = new Intent(DeleteProfileActivity.this,LandingPageActivity.class);
+                    finish();
+                }else{
+                    try{
+                        throw task.getException();
 
+                    }catch(Exception e){
+                        Toast.makeText(DeleteProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
 }
