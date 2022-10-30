@@ -57,54 +57,52 @@ public class UserDashboardActivity extends AppCompatActivity {
         btnLoyalty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Loyalty");
-                DatabaseReference loyMem = databaseReference.child(firebaseUser.getUid().toString());
-                loyMem.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        LoyaltyModel loyaltyModel = new LoyaltyModel();
+                if (firebaseUser!=null){
+                    DatabaseReference loyMem = databaseReference.child(firebaseUser.getUid().toString());
+                    loyMem.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            LoyaltyModel loyaltyModel = new LoyaltyModel();
 
-                        if (!snapshot.exists()){
-                            Toast.makeText(UserDashboardActivity.this, "Not a Loyalty member", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(UserDashboardActivity.this, AddLoyaltyActivity.class));
-                            overridePendingTransition(0, 0);
-                            finish();
-                        }else {
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                                if (Objects.equals(dataSnapshot.getKey(),"name")){
-                                    loyaltyModel.setName(dataSnapshot.getValue().toString());
+                            if (!snapshot.exists()){
+                                Toast.makeText(UserDashboardActivity.this, "Not a Loyalty member", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(UserDashboardActivity.this, AddLoyaltyActivity.class));
+                                overridePendingTransition(0, 0);
+                                finish();
+                            }else {
+                                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                    if (Objects.equals(dataSnapshot.getKey(),"name")){
+                                        loyaltyModel.setName(dataSnapshot.getValue().toString());
+                                    }
+                                    if (Objects.equals(dataSnapshot.getKey(),"nic")){
+                                        loyaltyModel.setNic(dataSnapshot.getValue().toString());
+                                    }
+                                    if (Objects.equals(dataSnapshot.getKey(),"email")){
+                                        loyaltyModel.setEmail(dataSnapshot.getValue().toString());
+                                    }
+                                    if (Objects.equals(dataSnapshot.getKey(),"phoneNo")){
+                                        loyaltyModel.setPhoneNo(dataSnapshot.getValue().toString());
+                                    }
+                                    if (Objects.equals(dataSnapshot.getKey(),"points")){
+                                        loyaltyModel.setPoints(dataSnapshot.getValue().toString());
+                                    }
                                 }
-                                if (Objects.equals(dataSnapshot.getKey(),"nic")){
-                                    loyaltyModel.setNic(dataSnapshot.getValue().toString());
-                                }
-                                if (Objects.equals(dataSnapshot.getKey(),"email")){
-                                    loyaltyModel.setEmail(dataSnapshot.getValue().toString());
-                                }
-                                if (Objects.equals(dataSnapshot.getKey(),"phoneNo")){
-                                    loyaltyModel.setPhoneNo(dataSnapshot.getValue().toString());
-                                }
-                                if (Objects.equals(dataSnapshot.getKey(),"points")){
-                                    loyaltyModel.setPoints(dataSnapshot.getValue().toString());
-                                    System.out.println(dataSnapshot.getValue().toString());
-                                }
+
+                                Intent intent = new Intent(UserDashboardActivity.this, LoyaltyViewActivity.class);
+                                intent.putExtra("loyaltyModel", loyaltyModel);
+                                startActivity(intent);
                             }
-
-                            Intent intent = new Intent(UserDashboardActivity.this, LoyaltyViewActivity.class);
-                            intent.putExtra("loyaltyModel", loyaltyModel);
-                            startActivity(intent);
-                            overridePendingTransition(0, 0);
-                            finish();
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                        }
+                    });
+                }
             }
         });
 
