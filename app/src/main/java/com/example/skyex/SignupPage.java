@@ -45,7 +45,7 @@ public class SignupPage extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         progressBar = findViewById(R.id.progressBar);
-        mAuth = FirebaseAuth.getInstance();
+
 
         //switch to login activity
         TextView tvLogin= findViewById(R.id.tvLoginLink);
@@ -57,6 +57,7 @@ public class SignupPage extends AppCompatActivity {
             }
         });
 
+        //create user
         btnRegisterSignup = findViewById(R.id.btnRegisterSignup);
         btnRegisterSignup.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -85,61 +86,35 @@ public class SignupPage extends AppCompatActivity {
                 } else if (textpassword.length()<6) {
                     Toast.makeText(SignupPage.this, "Password is too short!", Toast.LENGTH_SHORT).show();
                     etPassword.requestFocus();
-                } else {
-//                    progressBar.setVisibility(View.VISIBLE);
-                    mAuth.createUserWithEmailAndPassword(textemail,textpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                }
+
+                else{
+                    mAuth = FirebaseAuth.getInstance();
+                    mAuth.createUserWithEmailAndPassword(textemail,textpassword).addOnCompleteListener(SignupPage.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                String uid = mAuth.getUid();
+                            if (task.isSuccessful()){
                                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
-
-                                firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                User readWriteUserDetails = new User(textfirstname,textlastname,textemail,textpassword);
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered User");
+                                databaseReference.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
-                                        User readWriteUserDetails = new User(textfirstname,textlastname,textemail,textpassword);
+                                    public void onComplete(@NonNull Task<Void> task) {
 
-                                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered User");
-                                        databaseReference.child(firebaseUser.getUid()).setValue(readWriteUserDetails);
+                                        if(task.isSuccessful()){
+                                            firebaseUser.sendEmailVerification();
+                                            Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
+                                            Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
+                                            startActivity(loginactivity);
+                                            finish();
+                                        }else{
+                                            Toast.makeText(SignupPage.this, "Error!",Toast.LENGTH_SHORT).show();
+                                        }
 
-                                        Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
-                                        startActivity(loginactivity);
-                                        finish();
-
-//                                        loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
-//                                        if (firebaseUser.isEmailVerified()){
-//                                            Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
-//                                            loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
-//                                            startActivity(loginactivity);
-//                                            finish();
-//                                        }else {
-//                                            Toast.makeText(SignupPage.this, "Email not verified", Toast.LENGTH_SHORT).show();
-//                                        }
                                     }
                                 });
-
-//                                DatabaseReference refprofile = FirebaseDatabase.getInstance().getReference("Registered User");
-//                                refprofile.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<Void> task) {
-//                                        if(task.isSuccessful()){
-//                                            //send email verification
-//                                            firebaseUser.sendEmailVerification();
-//
-//                                            Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
-//
-//                                            //redirect to login activity
-////
-//                                        }else{
-//                                            Toast.makeText(SignupPage.this, "Registration failed!",Toast.LENGTH_SHORT).show();
-//                                        }
-//                                        progressBar.setVisibility(View.GONE);
-//                                    }
-//                                });
-
-                            }else {
-                               try{
+                            }else{
+                                try{
                                    throw task.getException();
                                }catch(FirebaseAuthUserCollisionException e) {
                                    etEmail.setError("This email is already registered.Please use another");
@@ -148,11 +123,78 @@ public class SignupPage extends AppCompatActivity {
                                    Log.e(TAG,e.getMessage());
                                    Toast.makeText(SignupPage.this,e.getMessage(),Toast.LENGTH_LONG).show();
                                }
-                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     });
                 }
+//                else {
+////                    progressBar.setVisibility(View.VISIBLE);
+//                    mAuth.createUserWithEmailAndPassword(textemail,textpassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//                            if(task.isSuccessful()){
+//                                String uid = mAuth.getUid();
+//                                FirebaseUser firebaseUser = mAuth.getCurrentUser();
+//
+//                                firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                    @Override
+//                                    public void onSuccess(Void unused) {
+//                                        Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
+//                                        User readWriteUserDetails = new User(textfirstname,textlastname,textemail,textpassword);
+//
+//                                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered User");
+//                                        databaseReference.child(firebaseUser.getUid()).setValue(readWriteUserDetails);
+//
+//                                        Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
+//                                        startActivity(loginactivity);
+//                                        finish();
+//
+////                                        loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
+////                                        if (firebaseUser.isEmailVerified()){
+////                                            Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
+////                                            loginactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | loginactivity.FLAG_ACTIVITY_CLEAR_TASK| loginactivity.FLAG_ACTIVITY_NEW_TASK);
+////                                            startActivity(loginactivity);
+////                                            finish();
+////                                        }else {
+////                                            Toast.makeText(SignupPage.this, "Email not verified", Toast.LENGTH_SHORT).show();
+////                                        }
+//                                    }
+//                                });
+//
+////                                DatabaseReference refprofile = FirebaseDatabase.getInstance().getReference("Registered User");
+////                                refprofile.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+////                                    @Override
+////                                    public void onComplete(@NonNull Task<Void> task) {
+////                                        if(task.isSuccessful()){
+////                                            //send email verification
+////                                            firebaseUser.sendEmailVerification();
+////
+////                                            Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
+////
+////                                            //redirect to login activity
+//////
+////                                        }else{
+////                                            Toast.makeText(SignupPage.this, "Registration failed!",Toast.LENGTH_SHORT).show();
+////                                        }
+////                                        progressBar.setVisibility(View.GONE);
+////                                    }
+////                                });
+//
+//                            }else {
+//                               try{
+//                                   throw task.getException();
+//                               }catch(FirebaseAuthUserCollisionException e) {
+//                                   etEmail.setError("This email is already registered.Please use another");
+//                                   etEmail.requestFocus();
+//                                } catch (Exception e) {
+//                                   Log.e(TAG,e.getMessage());
+//                                   Toast.makeText(SignupPage.this,e.getMessage(),Toast.LENGTH_LONG).show();
+//                               }
+////                                progressBar.setVisibility(View.GONE);
+//                            }
+//                        }
+//                    });
+//                }
             }
         });
 

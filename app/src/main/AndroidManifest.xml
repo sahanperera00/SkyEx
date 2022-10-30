@@ -15,6 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SkyEx"
         tools:targetApi="31">
+
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" />
         <activity
             android:name=".UserDashboardActivity"
             android:exported="false" />
