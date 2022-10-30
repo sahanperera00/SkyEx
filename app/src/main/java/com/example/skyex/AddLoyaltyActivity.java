@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -46,16 +47,31 @@ public class AddLoyaltyActivity extends AppCompatActivity {
                 String lPhoneNo = tvLyltyPhone.getText().toString();
                 String lpoints = "0.00";
 
-                loyaltyModel = new LoyaltyModel(lName, lNic, lEmail, lPhoneNo, lpoints);
-                databaseReference.child(firebaseUser.getUid()).setValue(loyaltyModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(AddLoyaltyActivity.this, "Now you are a Loyalty Member", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AddLoyaltyActivity.this, LoyaltyViewActivity.class));
-                        overridePendingTransition(0,0);
-                        finish();
+                if (TextUtils.isEmpty(lName)) {
+                    Toast.makeText(AddLoyaltyActivity.this, "Please enter a  name", Toast.LENGTH_SHORT).show();
+                    tvLyltyName.requestFocus();
+                } else if (TextUtils.isEmpty(lNic)) {
+                    Toast.makeText(AddLoyaltyActivity.this, "Please enter a NIC Number", Toast.LENGTH_SHORT).show();
+                    tvLyltyNic.requestFocus();
+                } else if (TextUtils.isEmpty(lEmail)) {
+                    Toast.makeText(AddLoyaltyActivity.this, "Please enter a email", Toast.LENGTH_SHORT).show();
+                    tvLyltyEmail.requestFocus();
+                } else if (TextUtils.isEmpty(lPhoneNo)) {
+                    Toast.makeText(AddLoyaltyActivity.this, "Please enter a phone number", Toast.LENGTH_SHORT).show();
+                    tvLyltyPhone.requestFocus();
+                } else{
+
+                    loyaltyModel = new LoyaltyModel(lName, lNic, lEmail, lPhoneNo, lpoints);
+                    databaseReference.child(firebaseUser.getUid()).setValue(loyaltyModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(AddLoyaltyActivity.this, "Now you are a Loyalty Member", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(AddLoyaltyActivity.this, LoyaltyViewActivity.class));
+                            overridePendingTransition(0, 0);
+                            finish();
                     }
                 });
+            }
             }
         });
     }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -56,28 +57,42 @@ public class EditLoyaltyActivity extends AppCompatActivity {
                 String lEmail = tvLyltyEmail.getText().toString();
                 String lPhoneNo = tvLyltyPhone.getText().toString();
 
-                Map<String,Object> map = new HashMap<>();
-                map.put("name",lName);
-                map.put("nic",lNic);
-                map.put("email",lEmail);
-                map.put("phoneNo", lPhoneNo);
+                if (TextUtils.isEmpty(lName)) {
+                    Toast.makeText(EditLoyaltyActivity.this, "Please enter a  name", Toast.LENGTH_SHORT).show();
+                    tvLyltyName.requestFocus();
+                } else if (TextUtils.isEmpty(lNic)) {
+                    Toast.makeText(EditLoyaltyActivity.this, "Please enter a NIC Number", Toast.LENGTH_SHORT).show();
+                    tvLyltyNic.requestFocus();
+                } else if (TextUtils.isEmpty(lEmail)) {
+                    Toast.makeText(EditLoyaltyActivity.this, "Please enter a email", Toast.LENGTH_SHORT).show();
+                    tvLyltyEmail.requestFocus();
+                } else if (TextUtils.isEmpty(lPhoneNo)) {
+                    Toast.makeText(EditLoyaltyActivity.this, "Please enter a phone number", Toast.LENGTH_SHORT).show();
+                    tvLyltyPhone.requestFocus();
+                } else{
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("name", lName);
+                    map.put("nic", lNic);
+                    map.put("email", lEmail);
+                    map.put("phoneNo", lPhoneNo);
 
-                databaseReference.updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            loyaltyModel.setName(lName);
-                            loyaltyModel.setEmail(lEmail);
-                            loyaltyModel.setNic(lNic);
-                            loyaltyModel.setPhoneNo(lPhoneNo);
+                    databaseReference.updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                loyaltyModel.setName(lName);
+                                loyaltyModel.setEmail(lEmail);
+                                loyaltyModel.setNic(lNic);
+                                loyaltyModel.setPhoneNo(lPhoneNo);
 
-                            Toast.makeText(EditLoyaltyActivity.this, "Loyalty details updated", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(EditLoyaltyActivity.this, LoyaltyViewActivity.class);
-                            intent.putExtra("loyaltyModel", loyaltyModel);
-                            startActivity(intent);
+                                Toast.makeText(EditLoyaltyActivity.this, "Loyalty details updated", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(EditLoyaltyActivity.this, LoyaltyViewActivity.class);
+                                intent.putExtra("loyaltyModel", loyaltyModel);
+                                startActivity(intent);
+                            }
                         }
-                    }
-                });
+                    });
+            }
             }
         });
     }
