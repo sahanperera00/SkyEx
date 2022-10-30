@@ -97,6 +97,7 @@ public class ProductViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProductViewActivity.this, ShoppingCartActivity.class);
+                intent.putExtra("cartcheck", collectionName);
                 startActivity(intent);
             }
         });

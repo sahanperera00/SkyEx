@@ -95,6 +95,7 @@ public class ExploreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ExploreActivity.this, ShoppingCartActivity.class);
+                intent.putExtra("cartcheck", "explore");
                 startActivity(intent);
             }
         });
