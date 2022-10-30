@@ -47,6 +47,8 @@ public class EditAddressActivity extends AppCompatActivity {
         editAddress = findViewById(R.id.editAddressbtn);
         deleteAddress = findViewById(R.id.deleteAddressbtn);
 
+        builder = new AlertDialog.Builder(this);
+
         addressModel = getIntent().getParcelableExtra("address");
 
         if (addressModel != null) {
@@ -110,16 +112,20 @@ public class EditAddressActivity extends AppCompatActivity {
             deleteAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     builder.setTitle("Are you sure?")
-                                    .setMessage("Deleted data stay deleted").setCancelable(true).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            .setMessage("Deleted data stay deleted")
+                            .setCancelable(true)
+                            .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     deleteAddress();
                                 }
-                            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    startActivity(new Intent(EditAddressActivity.this, ShippingActivity.class));
+                                    dialogInterface.cancel();
                                 }
                             }).show();
                 }
