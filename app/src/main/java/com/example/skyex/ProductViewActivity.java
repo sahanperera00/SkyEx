@@ -101,15 +101,22 @@ public class ProductViewActivity extends AppCompatActivity {
 ////                        overridePendingTransition(0,0);
 //                        return true;
                     case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                        startActivity(new Intent(getApplicationContext(),UserDashboardActivity.class));
 //                        overridePendingTransition(0,0);
                         return true;
                 }
                 return false;
             }
         });
+        FirebaseUser firebaseUser;
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String Uid = firebaseUser.getUid();
 
-        addProductButton.setVisibility(View.GONE);
+        if (Uid.equals("jAyIlbUmERM6xoxmYqf1UWxlR7B2")){
+            addProductButton.setVisibility(View.VISIBLE);
+        }else {
+            addProductButton.setVisibility(View.GONE);
+        }
 
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
