@@ -38,12 +38,21 @@ public class UserDashboardActivity extends AppCompatActivity {
         btnEditProfile = findViewById(R.id.btnEditProfile);
         btnLoyalty = findViewById(R.id.btnLoyalty);
         tvDashFName = findViewById(R.id.tvDashFName);
-        tvDashEmail = findViewById(R.id.tvDashEmail);
+//        tvDashEmail = findViewById(R.id.tvDashEmail);
         tvViewFName = findViewById(R.id.tvViewFName);
         tvViewLName = findViewById(R.id.tvViewLName);
         tvViewEmail = findViewById(R.id.tvViewEmail);
         tvViewPassword = findViewById(R.id.tvViewPassword);
 //        tvWelcome = findViewById(R.id.tvDashWelcome);
+
+        //switch to update profile activity
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent updateactivity = new Intent(UserDashboardActivity.this,UpdateProfileActivity.class);
+                startActivity(updateactivity);
+            }
+        });
 
         btnLoyalty.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,14 +108,7 @@ public class UserDashboardActivity extends AppCompatActivity {
             }
         });
 
-        //switch to update profile activity
-        btnEditProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent updateactivity = new Intent(UserDashboardActivity.this,UpdateProfileActivity.class);
-                startActivity(updateactivity);
-            }
-        });
+
 
         mAuth = FirebaseAuth.getInstance();
         btnLogout.setOnClickListener(new View.OnClickListener() {
