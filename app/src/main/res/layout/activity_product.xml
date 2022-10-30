@@ -121,6 +121,7 @@
                 android:layout_marginTop="38dp"
                 android:layout_marginEnd="6dp"
                 android:text="Save"
+                android:visibility="gone"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton"
@@ -134,6 +135,7 @@
                 android:layout_marginEnd="32dp"
                 android:background="#00555555"
                 android:clickable="true"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
