@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -33,6 +35,7 @@ public class ProductViewActivity extends AppCompatActivity {
     private Button addProductButton;
     private RecyclerView recyclerView;
     private FirebaseDatabase firebaseDatabase;
+    private SearchView searchView;
     private DatabaseReference databaseReference;
     private ArrayList<ProductModel> productModelArrayList;
     private ProductRVAdapter productRVAdapter;
@@ -57,6 +60,21 @@ public class ProductViewActivity extends AppCompatActivity {
 
         collectionName = getIntent().getExtras().getString("collection");
         topic.setText(collectionName);
+
+        searchView = findViewById(R.id.searchViewProduct);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return false;
+            }
+        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.explore);
@@ -119,6 +137,20 @@ public class ProductViewActivity extends AppCompatActivity {
 //                overridePendingTransition(0,0);
             }
         });
+    }
+
+    private void filterList(String text) {
+        ArrayList<ProductModel> filteredList = new ArrayList<>();
+        for (ProductModel model : productModelArrayList) {
+            if (model.getProductName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(model);
+            }
+        }
+        if (filteredList.isEmpty()){
+            Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
+        }else{
+            productRVAdapter.setProductModelsArraylist(filteredList);
+        }
     }
 
     private void getAllProducts() {
