@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,6 +30,7 @@ import java.util.Objects;
 
 public class ExploreActivity extends AppCompatActivity {
     private Button addCollecitionButton;
+    private ImageButton cartButton;
     private RecyclerView recyclerView;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -40,6 +42,7 @@ public class ExploreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
 
+        cartButton = findViewById(R.id.idIBCart);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Collections");
         addCollecitionButton = findViewById(R.id.idAddCollectionBtn);
@@ -77,12 +80,22 @@ public class ExploreActivity extends AppCompatActivity {
             }
         });
 
+        addCollecitionButton.setVisibility(View.GONE);
+
         addCollecitionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ExploreActivity.this, AddCollectionActivity.class));
                 overridePendingTransition(0,0);
                 finish();
+            }
+        });
+
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ExploreActivity.this, ShoppingCartActivity.class);
+                startActivity(intent);
             }
         });
     }

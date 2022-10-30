@@ -2,6 +2,7 @@ package com.example.skyex;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,13 +19,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class UserProfilePage extends AppCompatActivity {
 
     private TextView tvFName,tvLName,tvEmail,tvPassword;
     private String fName,lName,email,password;
-    private Button btnLogout;
+    private Button btnLogout, btnLoyalty;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +39,11 @@ public class UserProfilePage extends AppCompatActivity {
         tvLName = findViewById(R.id.lname);
         tvEmail = findViewById(R.id.email);
         btnLogout = findViewById(R.id.btnLogout);
+//        btnLoyalty = findViewById(R.id.idBtnViewLoyalty);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Loyalty");
+        DatabaseReference loyMem = databaseReference.child(firebaseUser.getUid().toString());
 //        tvPassword = findViewById(R.id.password);
 //        logout();
 //        if(firebaseUser == null){
@@ -44,6 +51,57 @@ public class UserProfilePage extends AppCompatActivity {
 //        }else{
 //            displayUserProfile(firebaseUser);
 //        }
+
+
+        btnLoyalty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                loyMem.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        LoyaltyModel loyaltyModel = new LoyaltyModel();
+
+                        if (!snapshot.exists()){
+                            Toast.makeText(UserProfilePage.this, "Not a Loyalty member", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(UserProfilePage.this, AddLoyaltyActivity.class));
+                            overridePendingTransition(0, 0);
+                            finish();
+                        }else {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                if (Objects.equals(dataSnapshot.getKey(),"name")){
+                                    loyaltyModel.setName(dataSnapshot.getValue().toString());
+                                }
+                                if (Objects.equals(dataSnapshot.getKey(),"nic")){
+                                    loyaltyModel.setNic(dataSnapshot.getValue().toString());
+                                }
+                                if (Objects.equals(dataSnapshot.getKey(),"email")){
+                                    loyaltyModel.setEmail(dataSnapshot.getValue().toString());
+                                }
+                                if (Objects.equals(dataSnapshot.getKey(),"phoneNo")){
+                                    loyaltyModel.setPhoneNo(dataSnapshot.getValue().toString());
+                                }
+                                if (Objects.equals(dataSnapshot.getKey(),"points")){
+                                    loyaltyModel.setPoints(dataSnapshot.getValue().toString());
+                                    System.out.println(dataSnapshot.getValue().toString());
+                                }
+                            }
+
+                            Intent intent = new Intent(UserProfilePage.this, LoyaltyViewActivity.class);
+                            intent.putExtra("loyaltyModel", loyaltyModel);
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override

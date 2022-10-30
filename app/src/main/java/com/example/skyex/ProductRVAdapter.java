@@ -77,6 +77,8 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.MyVi
             prPrice = itemView.findViewById(R.id.etvProductPrice);
             prEditBtn = itemView.findViewById(R.id.idEditBtn2);
             prImage = itemView.findViewById(R.id.idIBProduct);
+
+            prEditBtn.setVisibility(View.GONE);
 //            prRelativeLayout = itemView.findViewById(R.id.idRLCollection);
         }
     }

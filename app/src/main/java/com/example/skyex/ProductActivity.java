@@ -116,7 +116,7 @@ public class ProductActivity extends AppCompatActivity {
                 Intent intent = new Intent(ProductActivity.this, ProductViewActivity.class);
                 intent.putExtra("collection", collectionName);
                 startActivity(intent);
-                overridePendingTransition(0,0);
+//                overridePendingTransition(0,0);
             }
         });
 
