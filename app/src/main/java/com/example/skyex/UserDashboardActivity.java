@@ -37,13 +37,13 @@ public class UserDashboardActivity extends AppCompatActivity {
         btnLogout = findViewById(R.id.btnLogout);
         btnEditProfile = findViewById(R.id.btnEditProfile);
         btnLoyalty = findViewById(R.id.btnLoyalty);
-        tvDashFName = findViewById(R.id.tvDashFName);
+        tvDashFName = findViewById(R.id.tvWelcome);
 //        tvDashEmail = findViewById(R.id.tvDashEmail);
         tvViewFName = findViewById(R.id.tvViewFName);
         tvViewLName = findViewById(R.id.tvViewLName);
         tvViewEmail = findViewById(R.id.tvViewEmail);
         tvViewPassword = findViewById(R.id.tvViewPassword);
-//        tvWelcome = findViewById(R.id.tvDashWelcome);
+//        tvWelcome = findViewById(R.id.tvWelcome);
 
         //switch to update profile activity
         btnEditProfile.setOnClickListener(new View.OnClickListener() {

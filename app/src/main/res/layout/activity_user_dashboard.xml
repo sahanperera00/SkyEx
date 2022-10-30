@@ -56,10 +56,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDashFName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
 
     <TextView
-        android:id="@+id/tvDashFName"
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
@@ -184,6 +184,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Loading.."
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.736"
@@ -195,6 +196,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Loading.."
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView17"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.736"
@@ -206,6 +208,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Loading.."
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.736"
@@ -217,6 +220,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Loading.."
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.756"
