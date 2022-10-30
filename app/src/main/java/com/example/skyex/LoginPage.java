@@ -88,15 +88,15 @@ public class LoginPage extends AppCompatActivity {
                              if(task.isSuccessful()){
                                  if(firebaseUser!=null){
                                      if(firebaseUser.isEmailVerified()){
-                                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered User");
-                                         databaseReference.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                             @Override
-                                             public void onComplete(@NonNull Task<Void> task) {
+//                                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered User");
+//                                         databaseReference.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                             @Override
+//                                             public void onComplete(@NonNull Task<Void> task) {
                                                  Toast.makeText(LoginPage.this, "Login Success!", Toast.LENGTH_SHORT).show();
                                                  Intent profileactivity = new Intent(LoginPage.this,ShopActivity.class);
                                                  startActivity(profileactivity);
-                                             }
-                                         });
+//                                             }
+//                                         });
                                      }else{
                                          Toast.makeText(LoginPage.this, "Email not verified", Toast.LENGTH_SHORT).show();
                                      }

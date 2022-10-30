@@ -58,6 +58,8 @@ public class EditCardActivity extends AppCompatActivity {
         textMonth = findViewById(R.id.textMonth);
         textYear = findViewById(R.id.textYear);
 
+        builder = new AlertDialog.Builder(this);
+
         editCard = findViewById(R.id.button);
         deleteCard = findViewById(R.id.deletebutton);
 
@@ -316,7 +318,9 @@ public class EditCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 builder.setTitle("Are you sure?")
-                        .setMessage("Deleted data stay deleted").setCancelable(true).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        .setMessage("Deleted data stay deleted")
+                        .setCancelable(true)
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 deleteCard();
@@ -324,7 +328,7 @@ public class EditCardActivity extends AppCompatActivity {
                         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                startActivity(new Intent(EditCardActivity.this, ShippingActivity.class));
+                                dialogInterface.cancel();
                             }
                         }).show();
             }

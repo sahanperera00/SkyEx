@@ -19,6 +19,12 @@ import java.util.ArrayList;
 
 public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.MyViewHolder> {
     Context context;
+
+    public void setProductModelsArraylist(ArrayList<ProductModel> productModelsArraylist) {
+        this.productModelsArraylist = productModelsArraylist;
+        notifyDataSetChanged();
+    }
+
     ArrayList<ProductModel> productModelsArraylist;
 
     public ProductRVAdapter(Context context, ArrayList<ProductModel> productModelsArraylist) {
