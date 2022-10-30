@@ -7,9 +7,9 @@
     <item android:title="Explore"
         android:id="@+id/explore"
         android:icon="@drawable/ic_baseline_remove_red_eye_24"/>
-    <item android:title="Favorites"
-        android:id="@+id/favorites"
-        android:icon="@drawable/ic_baseline_favorite_24"/>
+<!--    <item android:title="Favorites"-->
+<!--        android:id="@+id/favorites"-->
+<!--        android:icon="@drawable/ic_baseline_favorite_24"/>-->
     <item android:title="Profile"
         android:id="@+id/profile"
         android:icon="@drawable/ic_baseline_account_circle_24"/>
