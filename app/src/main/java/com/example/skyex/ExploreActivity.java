@@ -67,10 +67,10 @@ public class ExploreActivity extends AppCompatActivity {
                         return true;
                     case R.id.explore:
                         return true;
-                    case R.id.favorites:
-                        startActivity(new Intent(getApplicationContext(),FavoritesActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
+//                    case R.id.favorites:
+//                        startActivity(new Intent(getApplicationContext(),FavoritesActivity.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(),UserDashboardActivity.class));
                         overridePendingTransition(0,0);
