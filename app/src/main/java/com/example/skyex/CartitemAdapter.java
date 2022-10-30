@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -41,7 +43,7 @@ public class CartitemAdapter extends RecyclerView.Adapter<CartitemAdapter.ViewHo
         holder.price.setText("Rs. " + String.valueOf(total));
         holder.quantity.setText(cartModel.getQuantity());
         holder.size.setText(cartModel.getSize());
-
+        Picasso.get().load(cartModel.getCartImg()).into(holder.cartimg);
     }
 
     @Override
@@ -57,7 +59,7 @@ public class CartitemAdapter extends RecyclerView.Adapter<CartitemAdapter.ViewHo
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
+        private ImageView cartimg;
         private TextView name, size, quantity, price;
 
         public ViewHolder(@NonNull View itemView) {
@@ -66,7 +68,7 @@ public class CartitemAdapter extends RecyclerView.Adapter<CartitemAdapter.ViewHo
             size = itemView.findViewById(R.id.item_size);
             quantity = itemView.findViewById(R.id.item_quantity);
             price = itemView.findViewById(R.id.item_price);
-
+            cartimg = itemView.findViewById(R.id.idIVSCImage);
 
 
         }

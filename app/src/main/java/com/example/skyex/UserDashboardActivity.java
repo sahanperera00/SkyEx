@@ -2,7 +2,6 @@ package com.example.skyex;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,50 +20,56 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-public class UserProfilePage extends AppCompatActivity {
+public class UserDashboardActivity extends AppCompatActivity {
 
-    private TextView tvFName,tvLName,tvEmail,tvPassword;
+    private TextView tvWelcome,tvDashFName,tvDashEmail,tvViewFName,tvViewLName,tvViewEmail,tvViewPassword;
     private String fName,lName,email,password;
-    private Button btnLogout, btnLoyalty;
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    DatabaseReference databaseReference;
+    private Button btnLogout,btnEditProfile,btnLoyalty;
+//    private ImageView imgProfilePic;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_user_dashboard);
 
-        tvFName = findViewById(R.id.fname);
-        tvLName = findViewById(R.id.lname);
-        tvEmail = findViewById(R.id.email);
+//        imgProfilePic = findViewById(R.id.imgProfileAdd);
         btnLogout = findViewById(R.id.btnLogout);
-//        btnLoyalty = findViewById(R.id.idBtnViewLoyalty);
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Loyalty");
-        DatabaseReference loyMem = databaseReference.child(firebaseUser.getUid().toString());
-//        tvPassword = findViewById(R.id.password);
-//        logout();
-//        if(firebaseUser == null){
-//            Toast.makeText(UserProfilePage.this,"Error! User details not available",Toast.LENGTH_LONG).show();
-//        }else{
-//            displayUserProfile(firebaseUser);
-//        }
+        btnEditProfile = findViewById(R.id.btnEditProfile);
+        btnLoyalty = findViewById(R.id.btnLoyalty);
+        tvDashFName = findViewById(R.id.tvDashFName);
+//        tvDashEmail = findViewById(R.id.tvDashEmail);
+        tvViewFName = findViewById(R.id.tvViewFName);
+        tvViewLName = findViewById(R.id.tvViewLName);
+        tvViewEmail = findViewById(R.id.tvViewEmail);
+        tvViewPassword = findViewById(R.id.tvViewPassword);
+//        tvWelcome = findViewById(R.id.tvDashWelcome);
 
+        //switch to update profile activity
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent updateactivity = new Intent(UserDashboardActivity.this,UpdateProfileActivity.class);
+                startActivity(updateactivity);
+            }
+        });
 
         btnLoyalty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Loyalty");
+                DatabaseReference loyMem = databaseReference.child(firebaseUser.getUid().toString());
                 loyMem.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         LoyaltyModel loyaltyModel = new LoyaltyModel();
 
                         if (!snapshot.exists()){
-                            Toast.makeText(UserProfilePage.this, "Not a Loyalty member", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(UserProfilePage.this, AddLoyaltyActivity.class));
+                            Toast.makeText(UserDashboardActivity.this, "Not a Loyalty member", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(UserDashboardActivity.this, AddLoyaltyActivity.class));
                             overridePendingTransition(0, 0);
                             finish();
                         }else {
@@ -87,7 +92,7 @@ public class UserProfilePage extends AppCompatActivity {
                                 }
                             }
 
-                            Intent intent = new Intent(UserProfilePage.this, LoyaltyViewActivity.class);
+                            Intent intent = new Intent(UserDashboardActivity.this, LoyaltyViewActivity.class);
                             intent.putExtra("loyaltyModel", loyaltyModel);
                             startActivity(intent);
                             overridePendingTransition(0, 0);
@@ -103,24 +108,29 @@ public class UserProfilePage extends AppCompatActivity {
             }
         });
 
+
+
+        mAuth = FirebaseAuth.getInstance();
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firebaseAuth.signOut();
-
-                Toast.makeText(UserProfilePage.this,"Logout success",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(UserProfilePage.this,LoginPage.class);
-//                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | logoutactivity.FLAG_ACTIVITY_CLEAR_TASK| logoutactivity.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                mAuth.signOut();
+                Toast.makeText(UserDashboardActivity.this,"Logout success",Toast.LENGTH_LONG).show();
+                Intent logoutactivity = new Intent(UserDashboardActivity.this,LoginPage.class);
+                logoutactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | logoutactivity.FLAG_ACTIVITY_CLEAR_TASK| logoutactivity.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(logoutactivity);
                 finish();
             }
         });
 
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        if(firebaseUser == null){
+            Toast.makeText(UserDashboardActivity.this,"Error! User details not available",Toast.LENGTH_LONG).show();
+        }else{
+            displayUserProfile(firebaseUser);
+        }
     }
-
-//    private void logout() {
-
-//    }
 
     private void displayUserProfile(FirebaseUser firebaseUser){
         String id = firebaseUser.getUid();
@@ -134,18 +144,24 @@ public class UserProfilePage extends AppCompatActivity {
                     fName = readUserData.firstName;
                     lName = readUserData.lastName;
                     email = firebaseUser.getEmail();
+                    password = readUserData.password;
 
-                    tvFName.setText(fName);
-                    tvLName.setText(lName);
-                    tvEmail.setText(email);
+                    tvViewFName.setText(fName);
+                    tvViewLName.setText(lName);
+                    tvViewEmail.setText(email);
+                    tvViewPassword.setText(password);
+
+//                    tvWelcome.setText("Welcome"+tvViewFName);
 
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(UserProfilePage.this,"Error!",Toast.LENGTH_LONG).show();
+                Toast.makeText(UserDashboardActivity.this,"Error!",Toast.LENGTH_LONG).show();
             }
         });
     }
+
+
 }

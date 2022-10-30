@@ -75,6 +75,8 @@ public class CollectionRVAdapter extends RecyclerView.Adapter<CollectionRVAdapte
             clName = itemView.findViewById(R.id.etvCollectionName);
             clImage = itemView.findViewById(R.id.idIBCollection);
             clEditBtn = itemView.findViewById(R.id.idEditBtn);
+
+            clEditBtn.setVisibility(View.GONE);
 //            clConstraintLayout = itemView.findViewById(R.id.ecrvlayout);
         }
     }

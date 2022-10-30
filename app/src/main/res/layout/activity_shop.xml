@@ -30,12 +30,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <ImageView
+                    android:id="@+id/idIVLOGO"
+                    android:layout_width="180dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_launcher_background" />
+
+                <ImageButton
+                    android:id="@+id/idIBCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="#00A1A1A1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_outline_shopping_cart_24" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
                 android:id="@+id/idHomeImage"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="210dp"
                 android:background="#878787"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,6 +118,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/idCL2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +151,9 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/idRVTopic2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
                 </LinearLayout>
 
                 <TextView
@@ -136,6 +163,53 @@
                     android:layout_marginEnd="24dp"
                     android:text="Show all"
                     app:layout_constraintBaseline_toBaselineOf="@+id/idTVTopic2"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/idCL3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/idCL2">
+
+                <TextView
+                    android:id="@+id/idTVTopic3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Oversized Tees"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="24dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/idTVTopic3">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/idRVTopic3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/idTVSeeMoreTopic3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:text="Show all"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/idTVTopic3"
                     app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
