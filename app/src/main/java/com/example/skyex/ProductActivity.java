@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -60,6 +62,10 @@ public class ProductActivity extends AppCompatActivity {
 
         DatabaseReference specificdatabasereference;
         String ID = productName.getText().toString();
+
+//        XXXNew methodXXX
+//        String ID = FirebaseAuth.getInstance().getUid().toString();
+//        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         specificdatabasereference = firebaseDatabase.getReference("Carts").child(ID);
 
         specificdatabasereference.addValueEventListener(new ValueEventListener() {
@@ -104,6 +110,8 @@ public class ProductActivity extends AppCompatActivity {
 
                     CartModel cartModel = new CartModel(name, size, quantity,price, ID, image);
 
+//                    XXXNew methodXXX
+//                    databaseReference.child(FirebaseAuth.getInstance().getUid().toString()).child(ID).setValue(cartModel);
                     databaseReference.child(ID).setValue(cartModel);
                     Toast.makeText(ProductActivity.this, "Product Added to the cart", Toast.LENGTH_SHORT).show();
                 }
