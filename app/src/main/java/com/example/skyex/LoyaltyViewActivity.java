@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.squareup.picasso.Picasso;
 public class LoyaltyViewActivity extends AppCompatActivity {
     TextView tvLyltyName, tvLyltyNic, tvLyltyEmail, tvLyltyPhone, tvLyltyPoints;
     Button btnUpdateLoyalty, btnDeleteLoyalty;
+    ImageButton btnback;
     ImageView imageLoyalty;
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
@@ -38,7 +40,7 @@ public class LoyaltyViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loyalty_view);
 
-
+        btnback = findViewById(R.id.idBtnBackLoyalty);
         tvLyltyName = findViewById(R.id.idTVLoyaltyName);
         tvLyltyNic = findViewById(R.id.idTVLoyaltyNic);
         tvLyltyEmail = findViewById(R.id.idTVLoyaltyEmail);
@@ -51,12 +53,14 @@ public class LoyaltyViewActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Loyalty").child(firebaseUser.getUid().toString());
         loyaltyModel = getIntent().getParcelableExtra("loyaltyModel");
 
-        if (loyaltyModel.getPoints()!=null){
-            tvLyltyName.setText(loyaltyModel.getName());
-            tvLyltyEmail.setText(loyaltyModel.getEmail());
-            tvLyltyNic.setText(loyaltyModel.getNic());
-            tvLyltyPhone.setText(loyaltyModel.getPhoneNo());
-            tvLyltyPoints.setText(String.valueOf(loyaltyModel.getPoints()));
+        if (loyaltyModel!=null){
+            if (loyaltyModel.getPoints()!=null){
+                tvLyltyName.setText(loyaltyModel.getName());
+                tvLyltyEmail.setText(loyaltyModel.getEmail());
+                tvLyltyNic.setText(loyaltyModel.getNic());
+                tvLyltyPhone.setText(loyaltyModel.getPhoneNo());
+                tvLyltyPoints.setText(String.valueOf(loyaltyModel.getPoints()));
+            }
         }
 
         Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/skyex-423ec.appspot.com/o/images%2FstarLoyalty.png?alt=media&token=a492f468-6ec0-4b5b-b844-25af7fc93ae9").into(imageLoyalty);
@@ -75,16 +79,23 @@ public class LoyaltyViewActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ExploreActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.favorites:
-                        startActivity(new Intent(getApplicationContext(),FavoritesActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
+//                    case R.id.favorites:
+//                        startActivity(new Intent(getApplicationContext(),FavoritesActivity.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
                     case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                        startActivity(new Intent(getApplicationContext(),UserDashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
                 return false;
+            }
+        });
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoyaltyViewActivity.this,UserDashboardActivity.class));
             }
         });
 
@@ -106,8 +117,7 @@ public class LoyaltyViewActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(LoyaltyViewActivity.this, "Membership Revoked", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoyaltyViewActivity.this, UserProfilePage.class));
-                            overridePendingTransition(0, 0);
+                            startActivity(new Intent(LoyaltyViewActivity.this, UserDashboardActivity.class));
                         }
                     }
                 });

@@ -17,7 +17,7 @@ public class FavoritesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorites);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.favorites);
+//        bottomNavigationView.setSelectedItemId(R.id.favorites);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -31,8 +31,8 @@ public class FavoritesActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ExploreActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.favorites:
-                        return true;
+//                    case R.id.favorites:
+//                        return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
                         overridePendingTransition(0,0);

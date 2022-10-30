@@ -33,6 +33,7 @@ public class SignupPage extends AppCompatActivity {
      private Button btnRegisterSignup;
      private ProgressBar progressBar;
      private static final String TAG = "SignupPage";
+     DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,33 +87,31 @@ public class SignupPage extends AppCompatActivity {
                 } else if (textpassword.length()<6) {
                     Toast.makeText(SignupPage.this, "Password is too short!", Toast.LENGTH_SHORT).show();
                     etPassword.requestFocus();
-                }
-
-                else{
+                } else{
                     mAuth = FirebaseAuth.getInstance();
                     mAuth.createUserWithEmailAndPassword(textemail,textpassword).addOnCompleteListener(SignupPage.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                                User readWriteUserDetails = new User(textfirstname,textlastname,textemail,textpassword);
-                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered User");
-                                databaseReference.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-
-                                        if(task.isSuccessful()){
-                                            firebaseUser.sendEmailVerification();
-                                            Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
-                                            Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
-                                            startActivity(loginactivity);
-                                            finish();
-                                        }else{
-                                            Toast.makeText(SignupPage.this, "Error!",Toast.LENGTH_SHORT).show();
+                                User user = new User(textfirstname,textlastname,textemail,textpassword);
+                                databaseReference = FirebaseDatabase.getInstance().getReference("Registered User");
+                                if (firebaseUser!=null){
+                                    databaseReference.child(firebaseUser.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                firebaseUser.sendEmailVerification();
+                                                Toast.makeText(SignupPage.this, "Registration success!Email verification has been sent!",Toast.LENGTH_SHORT).show();
+                                                Intent loginactivity = new Intent(SignupPage.this,LoginPage.class);
+                                                startActivity(loginactivity);
+                                                finish();
+                                            }else{
+                                                Toast.makeText(SignupPage.this, "Error!",Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-
-                                    }
-                                });
+                                    });
+                                }
                             }else{
                                 try{
                                    throw task.getException();

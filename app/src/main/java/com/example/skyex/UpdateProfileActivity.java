@@ -51,7 +51,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         btnConfirmUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateProfile(firebaseUser);
+                startActivity(new Intent(UpdateProfileActivity.this,UserDashboardActivity.class));
             }
         });
 

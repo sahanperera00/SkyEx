@@ -51,9 +51,9 @@ public class AddLoyaltyActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(AddLoyaltyActivity.this, "Now you are a Loyalty Member", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AddLoyaltyActivity.this, LoyaltyViewActivity.class));
-                        overridePendingTransition(0,0);
-                        finish();
+                        Intent intent = new Intent(AddLoyaltyActivity.this, LoyaltyViewActivity.class);
+                        intent.putExtra("loyaltyModel",loyaltyModel);
+                        startActivity(intent);
                     }
                 });
             }
