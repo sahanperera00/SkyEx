@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ExploreActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.favorites:
-                        startActivity(new Intent(getApplicationContext(),FavoritesActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
+//                    case R.id.favorites:
+//                        startActivity(new Intent(getApplicationContext(),FavoritesActivity.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
                         overridePendingTransition(0,0);
