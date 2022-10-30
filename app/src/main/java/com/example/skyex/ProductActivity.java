@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +41,33 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.shop);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.shop:
+                        startActivity(new Intent(getApplicationContext(),ShopActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.explore:
+                        startActivity(new Intent(getApplicationContext(),ExploreActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+//                    case R.id.favorites:
+//                        startActivity(new Intent(getApplicationContext(),FavoritesActivity.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(),UserDashboardActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
         productName = findViewById(R.id.idTVProductName);
         productPrice = findViewById(R.id.idTVProductPrice);
         productSize = findViewById(R.id.idTVProductSize);
