@@ -72,7 +72,7 @@ public class CheckoutActivity extends AppCompatActivity {
                         .setPositiveButton("Back to Shopping", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                startActivity(new Intent(CheckoutActivity.this, ShoppingCartActivity.class));
+                                startActivity(new Intent(CheckoutActivity.this, ShopActivity.class));
                             }
                         }).show();
             }

@@ -21,10 +21,13 @@
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/drawable/edit_btn_bg.xml" value="0.2385" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/drawable/rounded_button.xml" value="0.1" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/drawable/ss.xml" value="0.2375" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_address.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_card.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_collection.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_loyalty.xml" value="0.163671875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_add_product.xml" value="0.2" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_brands.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_checkout.xml" value="0.2" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_edit_collection.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_edit_loyalty.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_edit_product.xml" value="0.176" />
@@ -35,17 +38,20 @@
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_login_page.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_loyalty_view.xml" value="0.2" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_payment.xml" value="0.264" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_product.xml" value="0.15486111111111112" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_product_view.xml" value="0.2" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_profile.xml" value="0.1" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_shipping.xml" value="0.2" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_shop.xml" value="0.17421875" />
-        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_shopping_cart.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_shopping_cart.xml" value="0.144" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_signup_page.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_user_dashboard.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/activity_user_profile_page.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/address_card.xml" value="0.2" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/brand_card.xml" value="0.17421875" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/card_item.xml" value="0.17421875" />
-        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/cart_item.xml" value="0.17421875" />
+        <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/cart_item.xml" value="0.1" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/explore_card.xml" value="0.1" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/fragment_brand.xml" value="0.2" />
         <entry key="..\:/Sahan/Github/SkyEx/app/src/main/res/layout/fragment_brands.xml" value="0.17421875" />
